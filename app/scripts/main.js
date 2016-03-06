@@ -1,1 +1,3 @@
-console.log('\'Allo \'Allo!'); // eslint-disable-line no-console
+var sayHello = require('./say_hello.js');
+
+sayHello();
