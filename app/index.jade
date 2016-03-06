@@ -9,9 +9,15 @@ html(lang="en", class="no-js")
 
 
 body
+	// browsersync
 	script(type='text/javascript' id="__bs_script__").
 		document.write("<script async src='/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
-	h1 Success!
+	
+	.menu-centered
+		ul.menu
+			li: a(href="") design
+			li: a(href="") music
+			li: a(href="") contact
 
 	// build:js(app) scripts/vendor.js
 	// bower:js
