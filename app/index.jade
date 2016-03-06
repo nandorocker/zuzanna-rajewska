@@ -1,0 +1,25 @@
+doctype html
+html(lang="en", class="no-js")
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="x-ua-compatible", content="ie=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title Zuzanna Rajewska
+		link(rel="stylesheet", href="styles/main.css")
+
+
+body
+	script(type='text/javascript' id="__bs_script__").
+		document.write("<script async src='/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
+	h1 Success!
+
+	// build:js(app) scripts/vendor.js
+	// bower:js
+	script(src="/bower_components/jquery/dist/jquery.js")
+	script(src="/bower_components/what-input/what-input.js")
+	script(src="/bower_components/foundation-sites/dist/foundation.js")
+	// endbower
+	// endbuild
+ 
+
+	script(src="scripts/main.js")

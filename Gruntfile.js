@@ -47,6 +47,10 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      jade: {
+        files: ['<%= config.app %>/styles/{,*/}*.jade'],
+        tasks: ['jade']
+      },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['sass', 'postcss']
@@ -68,7 +72,7 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           files: [
-            '<%= config.app %>/{,*/}*.html',
+            '<%= config.app %>/{,*/}*.html','<%= config.app %>/{,*/}*.jade',
             '.tmp/styles/{,*/}*.css',
             '<%= config.app %>/images/{,*/}*',
             '.tmp/scripts/{,*/}*.js'
@@ -160,6 +164,25 @@ module.exports = function (grunt) {
           src: '{,*/}*.js',
           dest: '.tmp/spec',
           ext: '.js'
+        }]
+      }
+    },
+
+    // Processes JADE files
+    jade: {
+      options: {
+        pretty: true,
+        data: {
+          debug: false
+        }
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>',
+          src: '**/*.jade',
+          dest: '.tmp',
+          ext: '.html'
         }]
       }
     },
@@ -355,6 +378,7 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'babel:dist',
+        'jade',
         'sass'
       ],
       test: [
@@ -362,6 +386,7 @@ module.exports = function (grunt) {
       ],
       dist: [
         'babel',
+        'jade',
         'sass',
         'imagemin',
         'svgmin'
