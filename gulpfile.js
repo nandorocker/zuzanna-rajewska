@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 	browserify = require('browserify'),
 	uglify = require('gulp-uglify');
 
-var env = process.env.NODE_ENV;
+var env = process.env.NODE_ENV || 'development';
 
 gulp.task('jade', function(){
 	return gulp.src('app/**/*.jade')
@@ -19,7 +19,7 @@ gulp.task('jade', function(){
 });
 
 gulp.task('js', function() {
-	return browserify('./app/scripts/main.js')
+	return browserify('./app/scripts/main.js', { debug: env !== 'production' })
 		.bundle()
 		.on('error', function (e) {
 			gutil.log(e);
@@ -27,7 +27,6 @@ gulp.task('js', function() {
 		.pipe(source('bundle.js'))
 		.pipe(gulp.dest('.tmp/scripts'))
 		.pipe(buffer())
-	// return gulp.src('app/scripts/main.js')
-		.pipe(uglify())
+		.pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
 		.pipe(gulp.dest('.tmp/scripts'))
 });
