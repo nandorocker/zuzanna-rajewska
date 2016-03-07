@@ -4,9 +4,10 @@ var gulp = require('gulp'),
 	gulpJade = require('gulp-jade'),
 	sass = require('gulp-sass'),
 	browserify = require('browserify'), // Does some magic shit I don't understand
-	source = require('vinyl-source-stream'), // This and the next one required for browserify
-	buffer = require('vinyl-buffer'),
-	uglify = require('gulp-uglify');
+	source = require('vinyl-source-stream'), // Rquired for browserify
+	buffer = require('vinyl-buffer'), // Rquired for browserify
+	uglify = require('gulp-uglify'),
+	browserSync = require('browser-sync').create();
 
 // Sets environment variables through gulp-util
 // To invoke: $ gulp --env=prod
@@ -27,7 +28,7 @@ gulp.task('html', function(){
 			jade: jade,
 			pretty: true
 		}))
-		.pipe(gulp.dest(outputDir))
+		.pipe(gulp.dest(outputDir));
 });
 
 // Process scripts
@@ -41,7 +42,7 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('.tmp/scripts'))
 		.pipe(buffer())
 		.pipe(env === 'prod' ? uglify() : gutil.noop())
-		.pipe(gulp.dest(outputDir + '/scripts'))
+		.pipe(gulp.dest(outputDir + '/scripts'));
 });
 
 // Process styles
@@ -59,14 +60,29 @@ gulp.task('styles', function(){
 	return gulp.src('app/styles/**/*.{scss,sass}')
 		.pipe(sass(config))
 		.pipe(gulp.dest(outputDir + '/styles'))
+		.pipe(browserSync.stream());
 });
 
 // Gulp Watch
 gulp.task('watch', function() {
 	gulp.watch('app/**/*.jade', ['html']);
 	gulp.watch('app/scripts/**/*.js', ['js']);
-	gulp.watch('app/styles/**/*.{scss,sass}', ['styles'])
+	gulp.watch('app/styles/**/*.{scss,sass}', ['styles']);
 });
 
+// Development Server
+gulp.task('serve', ['build'], function() {
+	browserSync.init({
+		server: '.tmp'
+	});
+
+	gulp.watch('app/styles/**/*.{scss,sass}', ['styles']);
+	gulp.watch('app/scripts/**/*.js', ['js']);
+	gulp.watch('app/**/*.jade', ['html']).on('change', browserSync.reload);
+});
+
+// Build
+gulp.task('build', ['html', 'js', 'styles']);
+
 // Default task
-gulp.task('default', ['html', 'js', 'styles', 'watch']);
+gulp.task('default', ['build', 'watch']);
