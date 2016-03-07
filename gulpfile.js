@@ -20,7 +20,6 @@ if (env === 'prod') {
 if (env === 'dev') {
 }
 
-
 // Process HTML
 gulp.task('html', function(){
 	return gulp.src('app/**/*.jade')
@@ -28,7 +27,7 @@ gulp.task('html', function(){
 			jade: jade,
 			pretty: true
 		}))
-		.pipe(gulp.dest('outputDir'))
+		.pipe(gulp.dest(outputDir))
 });
 
 // Process scripts
