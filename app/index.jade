@@ -13,15 +13,16 @@ body
 	script(type='text/javascript' id="__bs_script__").
 		document.write("<script async src='/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
 	
-	.row
-		.medium-8.columns
-			h1 Hello world! Let's try this one more time.
-
 	.menu-centered
 		ul.menu
 			li: a(href="") design
 			li: a(href="") music
 			li: a(href="") contact
+
+	.row.full-width.diff
+		.columns
+			h1 Hello world!
+			p Some more crap here
 
 	// build:js(app) scripts/vendor.js
 	// bower:js

@@ -18,6 +18,8 @@
     "tests"
   ],
   "devDependencies": {
-    "foundation-sites": "~6.2.0"
+    "foundation-sites": "~6.2.0",
+    "jquery": "~2.2.1",
+    "what-input": "~2.0.1"
   }
 }
