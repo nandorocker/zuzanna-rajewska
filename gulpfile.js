@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
 	gutil = require('gulp-util')
+	del = require('del') // to delete folders
 	jade = require('jade'),
 	gulpJade = require('gulp-jade'),
 	sass = require('gulp-sass'),
@@ -20,6 +21,13 @@ if (env === 'prod') {
 }
 if (env === 'dev') {
 }
+
+// Clean output dir first
+gulp.task('clean', function() {
+	return del([
+		outputDir + '/**/*'
+	]);
+});
 
 // Process HTML
 gulp.task('html', function(){
@@ -82,7 +90,7 @@ gulp.task('serve', ['build'], function() {
 });
 
 // Build
-gulp.task('build', ['html', 'js', 'styles']);
+gulp.task('build', ['clean', 'html', 'js', 'styles']);
 
 // Default task
 gulp.task('default', ['build', 'watch']);
