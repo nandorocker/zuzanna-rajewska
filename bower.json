@@ -1,11 +1,23 @@
 {
   "name": "zuzanna-web",
-  "private": true,
-  "dependencies": {
-    "foundation-sites": "~6.0.5"
-  },
+  "description": "",
+  "main": "Gruntfile.js",
+  "authors": [
+    "Nando Rossi <talk@nan.do>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nandorocker/zuzanna-rajewska",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "devDependencies": {
-    "chai": "~3.5.0",
-    "mocha": "~2.4.5"
+    "foundation-sites": "~6.2.0"
   }
 }

@@ -4,14 +4,24 @@ html(lang="en", class="no-js")
 		meta(charset="utf-8")
 		meta(http-equiv="x-ua-compatible", content="ie=edge")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		title Zuzanna Rajewska
+		title zuzanna rajewska
 		link(rel="stylesheet", href="styles/main.css")
 
 
 body
+	// browsersync
 	script(type='text/javascript' id="__bs_script__").
 		document.write("<script async src='/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
-	h1 Success!
+	
+	.row
+		.medium-8.columns
+			h1 Hello world! Let's try this one more time.
+
+	.menu-centered
+		ul.menu
+			li: a(href="") design
+			li: a(href="") music
+			li: a(href="") contact
 
 	// build:js(app) scripts/vendor.js
 	// bower:js
