@@ -60,3 +60,10 @@ gulp.task('styles', function(){
 		.pipe(sass(config))
 		.pipe(gulp.dest(outputDir + '/styles'))
 });
+
+// Gulp Watch
+gulp.task('watch', function() {
+	gulp.watch('app/**/*.jade', ['html']);
+	gulp.watch('app/scripts/**/*.js', ['js']);
+	gulp.watch('app/styles/**/*.{scss,sass}', ['styles'])
+});
