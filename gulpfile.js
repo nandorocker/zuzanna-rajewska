@@ -1,14 +1,22 @@
-var gulp = require('gulp'),
-	gutil = require('gulp-util')
-	del = require('del') // to delete folders
-	jade = require('jade'),
-	gulpJade = require('gulp-jade'),
-	sass = require('gulp-sass'),
-	browserify = require('browserify'), // Does some magic shit I don't understand
-	source = require('vinyl-source-stream'), // Rquired for browserify
-	buffer = require('vinyl-buffer'), // Rquired for browserify
-	uglify = require('gulp-uglify'),
-	browserSync = require('browser-sync').create();
+// Error Handling with Plumber
+var onError = function(err) {
+    console.log(err);
+}
+
+var gulp 		= require('gulp'),
+	gutil 		= require('gulp-util'),
+	del 		= require('del'), // to delete folders
+	jade 		= require('jade'),
+	gulpJade 	= require('gulp-jade'),
+	sass 		= require('gulp-sass'),
+	browserify 	= require('browserify'), // Does some magic shit I don't understand
+	source 		= require('vinyl-source-stream'), // Rquired for browserify
+	buffer 		= require('vinyl-buffer'), // Rquired for browserify
+	uglify 		= require('gulp-uglify'),
+	imagemin	= require('gulp-imagemin'), // Image minify
+	plumber		= require('gulp-plumber'), // Error Handling
+	notify		= require('gulp-notify'),
+	browserSync	= require('browser-sync').create();
 
 // Sets environment variables through gulp-util
 // To invoke: $ gulp --env=prod
@@ -71,11 +79,26 @@ gulp.task('styles', function(){
 		.pipe(browserSync.stream());
 });
 
+// Compress and minify images to reduce their file size
+gulp.task('images', function() {
+	var imgSrc = 'app/images/**/*',
+		imgDst = 'app/images';
+
+	return gulp.src(imgSrc)
+		.pipe(plumber({
+			errorHandler: onError
+		}))
+		.pipe(imagemin())
+		.pipe(gulp.dest(imgDst))
+		.pipe(notify({ message: 'Images task complete' }));
+});
+
 // Gulp Watch
 gulp.task('watch', function() {
 	gulp.watch('app/**/*.jade', ['html']);
 	gulp.watch('app/scripts/**/*.js', ['js']);
 	gulp.watch('app/styles/**/*.{scss,sass}', ['styles']);
+	gulp.watch('app/**/*.{jpg,png,svg,ico}');
 });
 
 // Development Server
@@ -84,13 +107,14 @@ gulp.task('serve', ['build'], function() {
 		server: '.tmp'
 	});
 
+	gulp.watch('app/**/*.{jpg,png,svg,ico}', ['images']);
 	gulp.watch('app/styles/**/*.{scss,sass}', ['styles']);
 	gulp.watch('app/scripts/**/*.js', ['js']);
 	gulp.watch('app/**/*.jade', ['html']).on('change', browserSync.reload);
 });
 
 // Build
-gulp.task('build', ['clean', 'html', 'js', 'styles']);
+gulp.task('build', ['clean', 'html', 'js', 'images', 'styles']);
 
 // Default task
 gulp.task('default', ['build', 'watch']);
