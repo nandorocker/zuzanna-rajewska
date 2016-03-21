@@ -30,9 +30,19 @@ body {
   }
 }
 
-.main-area {
-  background: #f1efef;
-  height: 300px;
+/*
+  Site Sections
+*/
+
+/* Home */
+.home {
+  #main-area {
+    background: #f1efef;
+    //min-height: 300px;
+    align-items: center;
+  }
+}
+
 /* Style the section titles */
 section {
   .section-title {
