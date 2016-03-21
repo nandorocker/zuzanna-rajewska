@@ -1,4 +1,5 @@
 # Zuzanna Rajewska Website
 
 ## To-Dos
-- Make website
+- Break up CSS into SMACSS (base, layout, module)
+- Revise pre-applied CSS
