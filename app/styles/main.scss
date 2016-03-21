@@ -20,6 +20,21 @@ body {
   padding-bottom: 20px;
 }
 
+.menu {
+  li {
+    text-transform: uppercase;
+    font-size: 14px;
+    a {
+      color: #333;
+    }
+  }
+}
+
+.main-area {
+  background: #f1efef;
+  height: 300px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -54,8 +69,11 @@ body {
 
 /* Main marketing message and sign up button */
 .jumbotron {
+  display: flex;
+  align-items: center;
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  min-height: 90vh;
   .btn {
     font-size: 21px;
     padding: 14px 24px;
@@ -86,11 +104,12 @@ body {
 
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
+    padding-top: 30px;
     border-bottom: 0;
   }
 }
