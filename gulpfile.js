@@ -21,6 +21,7 @@ var gulp 		= require('gulp'),
 // Sets environment variables through gulp-util
 // To invoke: $ gulp --env=prod
 var env = gutil.env.env;
+var sourceDir = 'app';
 var outputDir = '.tmp';
 
 if (env === 'prod') {
@@ -39,7 +40,7 @@ gulp.task('clean', function() {
 
 // Process HTML
 gulp.task('html', function(){
-	return gulp.src('app/**/*.jade')
+	return gulp.src(sourceDir + '/**/*.jade')
 		.pipe(gulpJade({
 			jade: jade,
 			pretty: true
@@ -73,7 +74,7 @@ gulp.task('styles', function(){
 		config.outputStyle = 'map';
 	}
 
-	return gulp.src('app/styles/**/*.{scss,sass}')
+	return gulp.src(sourceDir + '/styles/**/*.{scss,sass}')
 		.pipe(sass(config))
 		.pipe(gulp.dest(outputDir + '/styles'))
 		.pipe(browserSync.stream());
@@ -81,8 +82,8 @@ gulp.task('styles', function(){
 
 // Compress and minify images to reduce their file size
 gulp.task('images', function() {
-	var imgSrc = 'app/images/**/*',
-		imgDst = 'app/images';
+	var imgSrc = sourceDir + '/images/**/*',
+		imgDst = outputDir + '/images';
 
 	return gulp.src(imgSrc)
 		.pipe(plumber({
@@ -95,10 +96,10 @@ gulp.task('images', function() {
 
 // Gulp Watch
 gulp.task('watch', function() {
-	gulp.watch('app/**/*.jade', ['html']);
-	gulp.watch('app/scripts/**/*.js', ['js']);
-	gulp.watch('app/styles/**/*.{scss,sass}', ['styles']);
-	gulp.watch('app/**/*.{jpg,png,svg,ico}');
+	gulp.watch(sourceDir + '/**/*.jade', ['html']);
+	gulp.watch(sourceDir + '/scripts/**/*.js', ['js']);
+	gulp.watch(sourceDir + '/styles/**/*.{scss,sass}', ['styles']);
+	gulp.watch(sourceDir + '/**/*.{jpg,png,svg,ico}');
 });
 
 // Development Server
@@ -107,10 +108,10 @@ gulp.task('serve', ['build'], function() {
 		server: '.tmp'
 	});
 
-	gulp.watch('app/**/*.{jpg,png,svg,ico}', ['images']);
-	gulp.watch('app/styles/**/*.{scss,sass}', ['styles']);
-	gulp.watch('app/scripts/**/*.js', ['js']);
-	gulp.watch('app/**/*.jade', ['html']).on('change', browserSync.reload);
+	gulp.watch(sourceDir + '/**/*.{jpg,png,svg,ico}', ['images']);
+	gulp.watch(sourceDir + '/styles/**/*.{scss,sass}', ['styles']);
+	gulp.watch(sourceDir + '/scripts/**/*.js', ['js']);
+	gulp.watch(sourceDir + '/**/*.jade', ['html']).on('change', browserSync.reload);
 });
 
 // Build
