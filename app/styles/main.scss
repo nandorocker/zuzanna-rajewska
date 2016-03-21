@@ -33,6 +33,23 @@ body {
 .main-area {
   background: #f1efef;
   height: 300px;
+/* Style the section titles */
+section {
+  .section-title {
+    display: inline-block;
+    clear: both;
+    font-family: 'Six Caps', sans-serif;
+    size: 5rem;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      display: block;
+      position: relative;
+      right:50%;
+      border-bottom: 3px solid #333;
+    }
+  }
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -70,7 +87,6 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   display: flex;
-  align-items: center;
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
   min-height: 90vh;
