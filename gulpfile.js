@@ -41,11 +41,15 @@ gulp.task('clean', function() {
 // Process HTML
 gulp.task('html', function(){
 	return gulp.src(sourceDir + '/**/*.jade')
+		.pipe(plumber({
+			errorHandler: onError
+		}))
 		.pipe(gulpJade({
 			jade: jade,
 			pretty: true
 		}))
-		.pipe(gulp.dest(outputDir));
+		.pipe(gulp.dest(outputDir))
+		.pipe(notify({ message: 'HTML task complete' }));
 });
 
 // Process scripts
@@ -55,11 +59,15 @@ gulp.task('js', function() {
 		.on('error', function (e) {
 			gutil.log(e);
 		})
+		.pipe(plumber({
+			errorHandler: onError
+		}))
 		.pipe(source('bundle.js'))
 		.pipe(gulp.dest('.tmp/scripts'))
 		.pipe(buffer())
 		.pipe(env === 'prod' ? uglify() : gutil.noop())
-		.pipe(gulp.dest(outputDir + '/scripts'));
+		.pipe(gulp.dest(outputDir + '/scripts'))
+		.pipe(notify({ message: 'JS task complete' }));
 });
 
 // Process styles
@@ -75,9 +83,13 @@ gulp.task('styles', function(){
 	}
 
 	return gulp.src(sourceDir + '/styles/**/*.{scss,sass}')
+		.pipe(plumber({
+			errorHandler: onError
+		}))
 		.pipe(sass(config))
 		.pipe(gulp.dest(outputDir + '/styles'))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream())
+		.pipe(notify({ message: 'Styles task complete' }));
 });
 
 // Compress and minify images to reduce their file size
