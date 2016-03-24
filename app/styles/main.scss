@@ -1,7 +1,15 @@
+//fonts
+@import "https://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400,300,600,700,400italic";
+@import "https://www.google.com/fonts#UsePlace:use/Collection:Six+Capss";
 // bower:scss
+@import "settings";
 @import "bower_components/foundation-sites/scss/foundation.scss";
 // endbower
 @include foundation-everything;
+
+// * {
+//   border: 1px solid #eee;
+// }
 
 .browsehappy {
   margin: 0.2em 0;
@@ -14,6 +22,48 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.menu {
+  li {
+    text-transform: uppercase;
+    font-size: 14px;
+    a {
+      color: #333;
+    }
+  }
+}
+
+/*
+  Site Sections
+*/
+
+/* Home */
+.home {
+  #main-area {
+    background: #f1efef;
+    //min-height: 300px;
+    align-items: center;
+  }
+}
+
+/* Style the section titles */
+section {
+  .section-title {
+    display: inline-block;
+    clear: both;
+    font-family: 'Six Caps', sans-serif;
+    size: 5rem;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      display: block;
+      position: relative;
+      right:50%;
+      border-bottom: 3px solid #333;
+    }
+  }
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -50,8 +100,10 @@ body {
 
 /* Main marketing message and sign up button */
 .jumbotron {
+  display: flex;
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  min-height: 90vh;
   .btn {
     font-size: 21px;
     padding: 14px 24px;
@@ -63,6 +115,20 @@ body {
   margin: 40px 0;
   p + h4 {
     margin-top: 28px;
+  }
+}
+
+/* Full-width row support */
+.row{
+  &.full-width{
+    max-width: 100% !important;
+
+    .row{
+      margin: 0 auto;
+      max-width: 62.5rem;
+      background: inherit;
+    }
+   
   }
 }
 
@@ -82,11 +148,12 @@ body {
 
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
+    padding-top: 30px;
     border-bottom: 0;
   }
 }

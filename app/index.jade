@@ -8,21 +8,29 @@ html(lang="en", class="no-js")
 		link(rel="stylesheet", href="styles/main.css")
 
 
-body
+body.home
 	// browsersync
 	script(type='text/javascript' id="__bs_script__").
 		document.write("<script async src='/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
 	
-	.menu-centered
-		ul.menu
-			li: a(href="") design
-			li: a(href="") music
-			li: a(href="") contact
+	nav.header
+		.menu-centered
+			ul.menu
+				li: a(href="") design
+				li: a(href="") music
+				li: a(href="") contact
 
-	.row.full-width.diff
+	header#main-area.row.full-width.jumbotron
+		.medium-8.small-centered.columns
+			img(src="images/logo-blackcircle.png")
+			p Hello, vestibulum rutrum quam vitae fringilla tincidunt. Suspendisse nec tortor urna. Ut laoreet sodales nisi, quis iaculis nulla iaculis vitae.
+
+	section#work.jumbotron.row.full-width
 		.columns
-			h1 Hello world!
-			p Some more crap here
+			h2.section-title Work
+
+	footer
+		p &copy; 2016 Zuzanna Rajewska • Impressum
 
 	// build:js(app) scripts/vendor.js
 	// bower:js
@@ -31,6 +39,5 @@ body
 	script(src="/bower_components/foundation-sites/dist/foundation.js")
 	// endbower
 	// endbuild
- 
 
 	script(src="scripts/main.js")
