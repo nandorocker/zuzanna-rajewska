@@ -59,21 +59,13 @@ section {
     background: #f1efef;
     //min-height: 300px;
     align-items: center;
+
+    p {
+      margin-top: 2rem;
+    }
   }
 
   #work {
 
-  }
-}
-
-
-/* Small only */
-@include breakpoint(medium only) {
-  #nav {
-    .menu {
-      li.logo {
-        text-align: center;
-      }
-    }
   }
 }
