@@ -1,6 +1,6 @@
 # Zuzanna Rajewska Website
 
 ## To-Dos
-- Break up CSS into SMACSS (base, layout, module)
-- Revise pre-applied CSS
+- Fix up images (looking jagged)
 - Add thumbnails to home: http://foundation.zurb.com/sites/docs/grid.html#block-grids
+- Improve gulp script (when jade is updated, force full page refresh)
