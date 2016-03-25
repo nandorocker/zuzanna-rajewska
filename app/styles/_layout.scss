@@ -32,7 +32,10 @@ section {
 
       &.logo {
         margin-top: 0; /* Fix for logo top margin */
-        text-align: left;
+
+        @include breakpoint(medium) {
+          text-align: left;
+        }
 
         img {
           height: 2.4em;
@@ -65,7 +68,7 @@ section {
 
 
 /* Small only */
-@media screen and (max-width: 39.9375em) {
+@include breakpoint(medium only) {
   #nav {
     .menu {
       li.logo {
@@ -74,15 +77,3 @@ section {
     }
   }
 }
-
-/* Medium and up */
-@media screen and (min-width: 40em) {}
-
-/* Medium only */
-@media screen and (min-width: 40em) and (max-width: 63.9375em) {}
-
-/* Large and up */
-@media screen and (min-width: 64em) {}
-
-/* Large only */
-@media screen and (min-width: 64em) and (max-width: 74.9375em) {}
