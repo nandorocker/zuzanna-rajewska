@@ -14,11 +14,10 @@ body.home
 		document.write("<script async src='/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
 	
 	nav#nav
-		.menu-centered
-			ul.menu
-				li: a(href="") design
-				li: a(href="") music
-				li: a(href="") contact
+		ul.menu.row.full-width
+			li.medium-2.medium-offset-3.columns: a(href="") design
+			li.medium-2.columns: a(href="") music
+			li.medium-2.columns.end: a(href="") contact
 
 	header#main-area.row.full-width.jumbotron
 		.medium-8.small-centered.columns
