@@ -15,7 +15,7 @@ section {
       content: "";
       display: block;
       position: relative;
-      right:50%;
+      right: 50%;
       border-bottom: 3px solid #333;
     }
   }
@@ -25,9 +25,21 @@ section {
 #nav {
 	.menu {
 	  li {
+      margin-top: .75rem; /* Fix for logo top margin */
 	    text-transform: uppercase;
 	    font-size: 14px;
-	  a {
+      text-align: center;
+
+      &.logo {
+        margin-top: 0; /* Fix for logo top margin */
+        text-align: left;
+
+        img {
+          height: 2.4em;
+        }
+      }
+      
+  	  a {
 	      color: #333;
 	    }
 	  }
@@ -50,3 +62,27 @@ section {
 
   }
 }
+
+
+/* Small only */
+@media screen and (max-width: 39.9375em) {
+  #nav {
+    .menu {
+      li.logo {
+        text-align: center;
+      }
+    }
+  }
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {}
+
+/* Medium only */
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {}
+
+/* Large and up */
+@media screen and (min-width: 64em) {}
+
+/* Large only */
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {}
