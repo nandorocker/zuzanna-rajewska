@@ -1,0 +1,52 @@
+/*
+  General Definitions
+*/
+
+/* Style the section titles */
+section {
+  .section-title {
+    display: inline-block;
+    clear: both;
+    font-family: 'Six Caps', sans-serif;
+    size: 5rem;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      display: block;
+      position: relative;
+      right:50%;
+      border-bottom: 3px solid #333;
+    }
+  }
+}
+
+/* Global Navigation */
+#nav {
+	.menu {
+	  li {
+	    text-transform: uppercase;
+	    font-size: 14px;
+	  a {
+	      color: #333;
+	    }
+	  }
+	}
+}
+
+/*
+  Site Sections
+*/
+
+/* Home */
+.home {
+  #main-area {
+    background: #f1efef;
+    //min-height: 300px;
+    align-items: center;
+  }
+
+  #work {
+
+  }
+}

@@ -130,4 +130,4 @@ gulp.task('serve', ['build'], function() {
 gulp.task('build', ['clean', 'html', 'js', 'images', 'styles']);
 
 // Default task
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['serve']);

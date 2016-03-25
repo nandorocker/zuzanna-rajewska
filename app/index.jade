@@ -13,7 +13,7 @@ body.home
 	script(type='text/javascript' id="__bs_script__").
 		document.write("<script async src='/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
 	
-	nav.header
+	nav#nav
 		.menu-centered
 			ul.menu
 				li: a(href="") design
@@ -29,7 +29,7 @@ body.home
 		.columns
 			h2.section-title Work
 
-	footer
+	footer.footer
 		p &copy; 2016 Zuzanna Rajewska • Impressum
 
 	// build:js(app) scripts/vendor.js
